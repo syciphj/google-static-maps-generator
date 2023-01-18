@@ -53,9 +53,9 @@ app.post('/api/generate', async (req,res) => {
 // build a static maps url using string interpolation (NOT IDEAL)
 // for testing, you can see how encoded polylines are not properly escaped or URL encoded
 function buildStaticMapsURLviaStringInterpolation(path, size = '400x400', center = '49.59917,6.13301', zoom = '12' ) {
-  const pathColor = path.color ? `color:${path.color}` : 'color:0x0000ff'
-  const pathWeight = path.weight ? `weight:${path.weight}` : 'weight:6'
-  const pathEncPolyline = path.polyline ? `enc:${path.polyline}` : 'enc:exj~Fp}~uOox@hC'
+  const pathColor = path.color ? `${path.color}` : '0x0000ff'
+  const pathWeight = path.weight ? `${path.weight}` : '6'
+  const pathEncPolyline = path.polyline ? `${path.polyline}` : 'exj~Fp}~uOox@hC'
   const pathParam = `${pathColor}|${pathWeight}|${pathEncPolyline}`
   return `
     ${STATIC_MAPS_URL}?key=${API_KEY}&size=${size}&center=${center}&zoom=${zoom}&path=color:${pathColor}|weight:${pathWeight}|enc:${pathEncPolyline}
